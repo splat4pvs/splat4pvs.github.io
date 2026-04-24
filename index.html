@@ -86,41 +86,6 @@
   </div>
 </section>
 
-<!-- Results carousel -->
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-4 has-text-centered">Convergence Comparisons</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_10_14_original.mp4" type="video/mp4">
-          </video>
-          <p class="has-text-centered">Pair 10→14 — Original (α=1.0)</p>
-        </div>
-        <div class="item">
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_10_14_inflated.mp4" type="video/mp4">
-          </video>
-          <p class="has-text-centered">Pair 10→14 — Inflated (α=1.8) — <strong>2× faster</strong></p>
-        </div>
-        <div class="item">
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_150_153_original.mp4" type="video/mp4">
-          </video>
-          <p class="has-text-centered">Pair 150→153 — Original (α=1.0) — <strong>FAILS</strong></p>
-        </div>
-        <div class="item">
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_150_153_inflated.mp4" type="video/mp4">
-          </video>
-          <p class="has-text-centered">Pair 150→153 — Inflated (α=1.8) — <strong>CONVERGES</strong></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -143,18 +108,9 @@
   </div>
 </section>
 
-<!-- Smoothing paradigms -->
+<!-- Interactive comparison -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Smoothing Paradigms</h2>
-    <div class="content">
-      <p>Three approaches have been proposed to enlarge the convergence domain of photometric VS through smoothing. Our method is the first to operate directly in 3D scene space.</p>
-      <figure>
-        <img src="assets/blurring_paradigms.png" alt="Blurring paradigms comparison">
-        <figcaption><strong>Figure:</strong> (a) Original PVS. (b) PGM-VS: uniform 2D convolution. (c) DDVS: optical defocus. (d) Ours: 3D scale inflation.</figcaption>
-      </figure>
-    </div>
-
     <!-- Interactive 4-panel paradigm comparison -->
     <div class="box" style="margin-top: 2em;">
       <h3 class="title is-4 has-text-centered">Interactive: Side-by-Side Comparison</h3>
@@ -171,7 +127,10 @@
         <div class="column" style="padding: 4px;">
           <p class="has-text-centered has-text-weight-bold" style="font-size: 0.85em; color: #d62728;">Original</p>
           <img id="panel-original" src="assets/paradigms_room/original.jpg" style="width:100%; border-radius: 6px; border: 2px solid #d62728;">
-          <p class="has-text-centered" style="font-size: 0.75em; color: #888; margin-top: 4px;">No parameter</p>
+          <div style="padding: 0 5px;">
+            <p class="has-text-centered" style="font-size: 0.8em; margin: 2px 0; color: #888;">No parameter</p>
+            <div style="height: 20px;"></div>
+          </div>
         </div>
         <!-- Panel 2: PGM-VS -->
         <div class="column" style="padding: 4px;">
@@ -244,117 +203,6 @@
   </div>
 </section>
 
-<!-- Convergence results -->
-<section class="section" style="background: #f5f5f5;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Convergence Results</h2>
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="content">
-          <figure>
-            <img src="assets/experiment_panel_14_10.png" alt="Experiment panel">
-            <figcaption><strong>Figure:</strong> Convergence experiment (pair 14→10). Inflated scales converge ~2× faster than original PVS.</figcaption>
-          </figure>
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="content">
-          <figure>
-            <img src="assets/convergence_bar.png" alt="Convergence bar chart">
-            <figcaption><strong>Figure:</strong> Success rate vs. α for 20 random initial poses. Optimal range: α ∈ [1.8, 2.2].</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="title is-4 has-text-centered">Multi-Scene Evaluation</h3>
-    <div class="content">
-      <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-        <thead>
-          <tr><th>Scene</th><th>Original</th><th>α=1.6</th><th>α=1.8</th><th>α=2.0</th><th>α=2.2</th><th>α=2.4</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Room (goal 10)</td><td>5/20</td><td>7/20</td><td>9/20</td><td>10/20</td><td><strong>11/20</strong></td><td>8/20</td></tr>
-          <tr><td>Room (goal 40)</td><td>5/20</td><td>6/20</td><td>6/20</td><td>6/20</td><td><strong>7/20</strong></td><td>4/20</td></tr>
-          <tr><td>Garden</td><td>0/20</td><td>0/20</td><td>4/20</td><td>8/20</td><td>15/20</td><td><strong>17/20</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Challenging cases -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Challenging Configurations</h2>
-    <div class="content">
-      <p>Cases where standard PVS (α=1.0) fails but scale-adaptive PVS (α=2.0) converges successfully.</p>
-      <figure>
-        <img src="assets/challenging_cases.png" alt="Challenging cases">
-        <figcaption><strong>Figure:</strong> Three challenging pairs. Each row: desired image, initial image, difference (jet colormap), 3D trajectories (red = original fails, blue = inflated converges).</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- Video comparisons -->
-<section class="section" style="background: #f5f5f5;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Video Comparisons</h2>
-    <div class="content">
-      <p class="has-text-centered">Side-by-side visual servoing convergence: desired | current | difference images.</p>
-
-      <h4 class="title is-5">Pair 0 → 4</h4>
-      <div class="comparison-grid">
-        <div>
-          <p class="comparison-label">Original (α = 1.0)</p>
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_0_4_original.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div>
-          <p class="comparison-label">Inflated (α = 1.8)</p>
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_0_4_inflated.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <h4 class="title is-5" style="margin-top: 2em;">Pair 40 → 44</h4>
-      <div class="comparison-grid">
-        <div>
-          <p class="comparison-label">Original (α = 1.0)</p>
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_40_44_original.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div>
-          <p class="comparison-label">Inflated (α = 1.8)</p>
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_40_44_inflated.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <h4 class="title is-5" style="margin-top: 2em;">Pair 150 → 153 (Challenging)</h4>
-      <div class="comparison-grid">
-        <div>
-          <p class="comparison-label">Original (α = 1.0) — FAILS</p>
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_150_153_original.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div>
-          <p class="comparison-label">Inflated (α = 1.8) — CONVERGES</p>
-          <video autoplay controls muted loop playsinline>
-            <source src="assets/render_comparison_150_153_inflated.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- BibTeX -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -386,15 +234,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Carousel
-  var carousels = bulmaCarousel.attach('#results-carousel', {
-    slidesToScroll: 1,
-    slidesToShow: 2,
-    loop: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-  });
-
 
   // ── 4-panel paradigm comparison ──
   var pScene = 'room';
