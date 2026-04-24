@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var pgmIdx = parseInt(document.getElementById('pgm-slider').value);
     var pgmLam = pgmValues[pgmIdx];
     var pgmFolder = (pgmMode === 'jet') ? 'pgm_jet_' : 'pgm_';
-    document.getElementById('panel-pgm').src = 'assets/' + pgmFolder + pScene + '/lambda_' + pgmLam + '.jpg';
+    document.getElementById('panel-pgm').src = 'assets/' + pgmFolder + pScene + '/lambda_' + pgmLam + '.jpg?v=2';
     document.getElementById('pgm-val').textContent = pgmLam;
     // DDVS
     var ddvsIdx = parseInt(document.getElementById('ddvs-slider').value);
