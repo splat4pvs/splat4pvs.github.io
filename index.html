@@ -82,46 +82,6 @@
         Inflating the scales of 3D Gaussians smooths the rendered images, widening the convergence basin of photometric visual servoing while maintaining sub-centimeter positioning accuracy.
       </h2>
 
-      <!-- Interactive alpha slider -->
-      <div class="box" style="margin-top: 2em;">
-        <h3 class="title is-4 has-text-centered">Interactive Demo: Effect of Scale Factor &alpha;</h3>
-        <p class="has-text-centered" style="margin-bottom: 1em;">Drag the slider to see how inflating Gaussian scales affects the 3DGS rendering of real scenes.</p>
-
-        <!-- Scene selector -->
-        <div class="has-text-centered" style="margin-bottom: 1em;">
-          <div class="buttons is-centered">
-            <button class="button is-info scene-btn is-selected" onclick="switchScene('alpha_room', this)">Room</button>
-            <button class="button is-light scene-btn" onclick="switchScene('alpha_garden', this)">Garden</button>
-            <button class="button is-light scene-btn" onclick="switchScene('alpha_bicycle', this)">Bicycle</button>
-            <button class="button is-light scene-btn" onclick="switchScene('alpha_kitchen', this)">Kitchen</button>
-          </div>
-        </div>
-
-        <div class="columns is-centered is-vcentered">
-          <div class="column is-7 has-text-centered">
-            <img id="alpha-image" src="assets/alpha_room/alpha_1.0.jpg" alt="3DGS rendering" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-          </div>
-          <div class="column is-4">
-            <div style="padding: 1em;">
-              <label class="label is-large has-text-centered">
-                &alpha; = <span id="alpha-value" style="font-size: 2.2em; color: #0984e3; font-weight: bold;">1.0</span>
-              </label>
-              <input id="alpha-slider" type="range"
-                     min="0" max="30" value="10" step="1"
-                     style="width: 100%; height: 40px; cursor: pointer; accent-color: #0984e3;">
-              <div class="columns is-mobile" style="margin-top: 0.3em;">
-                <div class="column has-text-left" style="padding: 0;"><small>0 (points)</small></div>
-                <div class="column has-text-centered" style="padding: 0;"><small style="color: #00b894; font-weight: bold;">optimal</small></div>
-                <div class="column has-text-right" style="padding: 0;"><small>3.0</small></div>
-              </div>
-              <div id="alpha-description" class="notification is-light" style="margin-top: 1em; font-size: 0.9em;">
-                <strong>Original:</strong> Sharp rendering, narrow convergence basin.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -435,66 +395,6 @@ document.addEventListener('DOMContentLoaded', function() {
     autoplaySpeed: 5000,
   });
 
-  // Alpha slider
-  var slider = document.getElementById('alpha-slider');
-  var alphaValue = document.getElementById('alpha-value');
-  var alphaImage = document.getElementById('alpha-image');
-  var alphaDesc = document.getElementById('alpha-description');
-  var currentScene = 'alpha_room';
-
-  // Preload images for all scenes
-  var scenes = ['alpha_room', 'alpha_garden', 'alpha_bicycle', 'alpha_kitchen'];
-  var preloaded = {};
-  scenes.forEach(function(scene) {
-    preloaded[scene] = {};
-    for (var i = 0; i <= 30; i++) {
-      var a = (i / 10).toFixed(1);
-      var img = new Image();
-      img.src = 'assets/' + scene + '/alpha_' + a + '.jpg';
-      preloaded[scene][a] = img;
-    }
-  });
-
-  // Scene switch
-  window.switchScene = function(scene, btn) {
-    currentScene = scene;
-    document.querySelectorAll('.scene-btn').forEach(function(b) {
-      b.classList.remove('is-info', 'is-selected');
-      b.classList.add('is-light');
-    });
-    btn.classList.remove('is-light');
-    btn.classList.add('is-info', 'is-selected');
-    updateAlpha();
-  };
-
-  function updateAlpha() {
-    var a = (slider.value / 10).toFixed(1);
-    alphaValue.textContent = a;
-    alphaImage.src = 'assets/' + currentScene + '/alpha_' + a + '.jpg';
-
-    var af = parseFloat(a);
-    if (af < 0.5) {
-      alphaDesc.innerHTML = '<strong>Sub-original (α = ' + a + '):</strong> Gaussians shrink toward points. Approaches COLMAP point cloud rendering.';
-      alphaDesc.className = 'notification is-dark';
-    } else if (af <= 1.0) {
-      alphaDesc.innerHTML = '<strong>Original (α ≤ 1.0):</strong> Sharp rendering, narrow convergence basin. Standard PVS operates here.';
-      alphaDesc.className = 'notification is-light';
-    } else if (af <= 1.6) {
-      alphaDesc.innerHTML = '<strong>Mild inflation (α = ' + a + '):</strong> Slight smoothing. Minimal impact on convergence domain.';
-      alphaDesc.className = 'notification is-info is-light';
-    } else if (af <= 2.2) {
-      alphaDesc.innerHTML = '<strong>Optimal range (α = ' + a + '):</strong> Strong smoothing. Convergence rate doubles. Best trade-off between basin width and gradient strength.';
-      alphaDesc.className = 'notification is-success is-light';
-    } else if (af <= 2.6) {
-      alphaDesc.innerHTML = '<strong>Over-smoothing (α = ' + a + '):</strong> Image features start to vanish. Convergence degrades as gradients weaken.';
-      alphaDesc.className = 'notification is-warning is-light';
-    } else {
-      alphaDesc.innerHTML = '<strong>Excessive (α = ' + a + '):</strong> Image almost featureless. Gradient information lost. VS fails to converge.';
-      alphaDesc.className = 'notification is-danger is-light';
-    }
-  }
-
-  slider.addEventListener('input', updateAlpha);
 
   // ── 4-panel paradigm comparison ──
   var pScene = 'room';
