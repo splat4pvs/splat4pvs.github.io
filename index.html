@@ -521,7 +521,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var ddvsIdx = parseInt(document.getElementById('ddvs-slider').value);
     var ddvsPhi = ddvsValues[ddvsIdx];
     document.getElementById('panel-ddvs').src = 'assets/ddvs_' + pScene + '/phi_' + ddvsPhi + '.jpg';
-    document.getElementById('ddvs-val').textContent = ddvsPhi;
+    var ddvsDisplay = ddvsPhi.indexOf('.') === -1 ? ddvsPhi + '.0' : ddvsPhi;
+    document.getElementById('ddvs-val').textContent = ddvsDisplay;
     // Ours
     var oursIdx = parseInt(document.getElementById('ours-slider').value);
     var oursAlpha = (oursIdx / 10).toFixed(1);
