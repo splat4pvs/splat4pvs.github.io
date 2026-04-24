@@ -108,6 +108,31 @@
   </div>
 </section>
 
+<!-- Why does blurring help? -->
+<section class="section" style="background: #f5f5f5;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Why Does Blurring Improve Convergence?</h2>
+        <div class="content has-text-justified">
+          <p>
+            At first glance, blurring an image seems counterproductive for precise robot positioning — shouldn't sharper measurements lead to better navigation? The answer lies in the shape of the <strong>cost function</strong> that the visual servoing optimizer must descend.
+          </p>
+          <p>
+            With sharp images, the photometric cost function is highly <strong>non-convex</strong>: small camera displacements cause large pixel-level changes due to texture shifts, specular reflections, and occlusions. This creates numerous <strong>local minima</strong> that trap the optimizer. The gradient may point in the wrong direction when the camera is far from its goal — the controller gets "lost."
+          </p>
+          <p>
+            Smoothing the image removes the high-frequency content responsible for these local minima. The cost landscape transforms from a rugged terrain with many valleys into a <strong>smooth bowl with a single global minimum</strong>. The optimizer now receives a correct descent direction from much farther away — the <strong>convergence basin widens</strong>.
+          </p>
+          <p>
+            The trade-off is clear: too little smoothing leaves local minima, too much smoothing flattens the gradient entirely. Our experiments show that an <strong>optimal range exists</strong> (α ∈ [1.8, 2.2] for indoor scenes) that maximizes the convergence basin while preserving enough gradient strength for precise final positioning.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Interactive comparison -->
 <section class="section">
   <div class="container is-max-desktop">
