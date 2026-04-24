@@ -259,33 +259,27 @@
   </div>
 </section>
 
-<!-- Interactive 3D Viewers -->
+<!-- Interactive 3D Viewer — All Methods -->
 <section class="section" style="background: #1a1a2e;">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered" style="color: white;">Interactive 3D Scene Viewers</h2>
+    <h2 class="title is-3 has-text-centered" style="color: white;">Interactive 3D Scene Viewer</h2>
     <div class="content has-text-centered">
-      <p style="color: #adb5bd;">Explore the VS convergence in the reconstructed 3DGS scene. Use mouse to orbit, scroll to zoom. The trajectory and camera frustums animate in real-time.</p>
+      <p style="color: #adb5bd;">All four methods animated simultaneously in the reconstructed 3DGS scene. Use mouse to orbit, scroll to zoom.</p>
+      <p style="color: #adb5bd; font-size: 0.9em;">
+        <span style="color: #ff5050;">&#9632; Original</span> &nbsp;
+        <span style="color: #ffa500;">&#9632; PGM-VS</span> &nbsp;
+        <span style="color: #5050ff;">&#9632; DDVS</span> &nbsp;
+        <span style="color: #00c800;">&#9632; Inflated</span> &nbsp;
+        <span style="color: #ffffff;">&#9633; Initial / Desired</span>
+      </p>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <h4 class="title is-5 has-text-centered" style="color: #d62728;">Original PVS (&alpha;=1.0)</h4>
-        <div style="position: relative; width: 100%; height: 400px; border-radius: 8px; overflow: hidden; border: 2px solid #d62728;">
-          <iframe src="viser-client/?playbackPath=../assets/recordings/original.viser"
-                  style="width: 100%; height: 100%; border: none;"
-                  allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="column is-half">
-        <h4 class="title is-5 has-text-centered" style="color: #1f77b4;">Inflated (&alpha;=2.0)</h4>
-        <div style="position: relative; width: 100%; height: 400px; border-radius: 8px; overflow: hidden; border: 2px solid #1f77b4;">
-          <iframe src="viser-client/?playbackPath=../assets/recordings/inflated.viser"
-                  style="width: 100%; height: 100%; border: none;"
-                  allowfullscreen></iframe>
-        </div>
-      </div>
+    <div style="position: relative; width: 100%; height: 500px; border-radius: 8px; overflow: hidden; border: 2px solid #444;">
+      <iframe src="viser-client/?playbackPath=../assets/recordings/all_methods.viser"
+              style="width: 100%; height: 100%; border: none;"
+              allowfullscreen></iframe>
     </div>
-    <p class="has-text-centered" style="font-size: 0.85em; color: #888;">
-      Green frustum: initial pose. Red frustum: desired pose. Blue trail: camera trajectory. Powered by <a href="https://github.com/nerfstudio-project/viser" style="color: #74b9ff;">viser</a>.
+    <p class="has-text-centered" style="font-size: 0.85em; color: #888; margin-top: 0.5em;">
+      Each method shows its camera frustum with live rendered image and trajectory trail. Powered by <a href="https://github.com/nerfstudio-project/viser" style="color: #74b9ff;">viser</a>.
     </p>
   </div>
 </section>
