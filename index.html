@@ -244,7 +244,7 @@
       inflation is <strong>on par with the strongest dense-smoothing methods</strong>: it matches well-tuned DDVS and
       exceeds PGM-VS and unsmoothed PVS. Our method and DDVS even converge on almost the same poses (9 of 11 shared),
       showing the basin benefit comes from smoothing itself &mdash; our advantage is being native to 3DGS, geometry-aware,
-      and self-scheduling, not a wider domain.</p>
+      and 7-DoF scale control, not a wider domain.</p>
     </div>
 
     <figure class="image" style="max-width: 640px; margin: 0 auto 2.5em;">
@@ -303,7 +303,7 @@
     </video>
 
     <!-- Emergent scale inflation (7-DoF, alpha as a degree of freedom) -->
-    <h4 class="title is-5 has-text-centered" style="color: #ff7f0e;">Emergent Scale Inflation: &alpha; as a 7<sup>th</sup> Degree of Freedom</h4>
+    <h4 class="title is-5 has-text-centered" style="color: #ff7f0e;">7-DoF Scale Control: &alpha; as an Additional Degree of Freedom</h4>
     <div class="content has-text-centered">
       <p>Going further, the scale can be made a control variable. The servo starts at the <strong>native scale &alpha;=1</strong>
       (Gaussians identical to the desired image) on a pose where plain PVS fails. Treated as an extra degree of freedom,
